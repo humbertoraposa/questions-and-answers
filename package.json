@@ -1,0 +1,25 @@
+{
+  "name": "questionsandanswers",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/humbertoraposa/questions-and-answers.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/humbertoraposa/questions-and-answers/issues"
+  },
+  "homepage": "https://github.com/humbertoraposa/questions-and-answers#readme",
+  "dependencies": {
+    "dayjs": "^1.8.36",
+    "polka": "^0.5.2",
+    "sequelize": "^6.3.5",
+    "sqlite3": "^5.0.0"
+  }
+}
