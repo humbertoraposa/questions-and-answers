@@ -1,15 +1,14 @@
 const polka = require('polka');
 const QuestionController = require('./controllers/questionController');
-
+const port = process.env.PORT || 3000;
 polka()
     .get ('/', QuestionController.list)
-    .get ('/question', null)
-    .post('question', null)
-    .get ('/question/:id', null)
-    .post('/question/:id', null)
+    .post('/question', QuestionController.insertOrUpdate)
+    .get ('/question/:id', QuestionController.findById)
+    .post('/question/:id', QuestionController.insertOrUpdate)
 
-    .listen(process.env.PORT, err=>{
+    .listen(port, err=>{
         if(err) throw err;
-        console.log('Running on port 3000');
+        console.log(`Running on port ${port}`);
     })
 

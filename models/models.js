@@ -2,7 +2,7 @@ const { Sequelize, DataTypes, INTEGER } = require('sequelize')
 
 const sequelize = new Sequelize({
     dialect: 'sqlite',
-    storage: '../db/database.sqlite',
+    storage: './db/database.sqlite',
     define:{
         freezeTableName: true
     }
@@ -36,6 +36,35 @@ const Author = sequelize.define('Author',{
     },
 })
 
+const Answer = sequelize.define('Answer', {
+    id:{
+        type: DataTypes.INTEGER,
+        autoIncrement:true,
+        allowNull:false,
+        primaryKey:true
+    },
+    text: {
+        type: DataTypes.BLOB,
+        allowNull:false
+    },
+    aproved: {
+        type: DataTypes.INTEGER,
+        defaultValue:0
+    },
+    authorId:{
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references:{
+            model: Author,
+            key: 'id'
+        }
+    }
+},{
+    timestamps:true,
+    createdAt: 'PublishedAt',
+    updatedAt:'LastUpdateAt'
+})
+
 const Question = sequelize.define('Question', {
     id: {
         type: DataTypes.INTEGER,
@@ -65,35 +94,6 @@ const Question = sequelize.define('Question', {
         references: {
             model: Answer,
             key:'id'
-        }
-    }
-},{
-    timestamps:true,
-    createdAt: 'PublishedAt',
-    updatedAt:'LastUpdateAt'
-})
-
-const Answer = sequelize.define('Answer', {
-    id:{
-        type: DataTypes.INTEGER,
-        autoIncrement:true,
-        allowNull:false,
-        primaryKey:true
-    },
-    text: {
-        type: DataTypes.BLOB,
-        allowNull:false
-    },
-    aproved: {
-        type: DataTypes.INTEGER,
-        defaultValue:0
-    },
-    authorId:{
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        references:{
-            model: Author,
-            key: 'id'
         }
     }
 },{
