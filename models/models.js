@@ -1,4 +1,4 @@
-const { Sequelize, DataTypes, INTEGER } = require('sequelize')
+const { Sequelize, DataTypes} = require('sequelize')
 
 const sequelize = new Sequelize({
     dialect: 'sqlite',
@@ -9,11 +9,6 @@ const sequelize = new Sequelize({
 })
 
 const Author = sequelize.define('Author',{
-    id: {
-        type: DataTypes.INTEGER,
-        autoIncrement:true,
-        primaryKey:true
-    },
     userName: {
         type: DataTypes.STRING,
         allowNull: false
@@ -34,15 +29,11 @@ const Author = sequelize.define('Author',{
         type: DataTypes.STRING,
         allowNull: true
     },
+},{
+    timestamps:false
 })
 
 const Answer = sequelize.define('Answer', {
-    id:{
-        type: DataTypes.INTEGER,
-        autoIncrement:true,
-        allowNull:false,
-        primaryKey:true
-    },
     text: {
         type: DataTypes.BLOB,
         allowNull:false
@@ -55,8 +46,7 @@ const Answer = sequelize.define('Answer', {
         type: DataTypes.INTEGER,
         allowNull: false,
         references:{
-            model: Author,
-            key: 'id'
+            model: Author
         }
     }
 },{
@@ -66,12 +56,6 @@ const Answer = sequelize.define('Answer', {
 })
 
 const Question = sequelize.define('Question', {
-    id: {
-        type: DataTypes.INTEGER,
-        allowNull:false,
-        autoIncrement:true,
-        primaryKey:true
-    },
     title: {
         type: DataTypes.STRING,
         allowNull:false
@@ -84,16 +68,14 @@ const Question = sequelize.define('Question', {
         type: DataTypes.INTEGER,
         allowNull: false,
         references:{
-            model: Author,
-            key:'id'
+            model: Author
         }
     },
     answerId:{
         type: DataTypes.INTEGER,
         allowNull: true,
         references: {
-            model: Answer,
-            key:'id'
+            model: Answer
         }
     }
 },{
@@ -107,12 +89,14 @@ const Topic = sequelize.define('Topic', {
         type:DataTypes.STRING,
         key: true
     }
+},{
+    timestamps:false,
 })
 
 Question.belongsToMany(Topic,{through:'QuestionTopics'});
 Topic.belongsToMany(Question, {through: 'QuestionTopics'})
 
-sequelize.sync({alter: true})
+sequelize.sync()
 
 module.exports = {
     Author,
