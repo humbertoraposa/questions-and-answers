@@ -43,7 +43,7 @@ Topic.bulkCreate([
     {topicName:"ruby"},
     {topicName:"rails"},
     {topicName:"grails"},
-    {topicName:"backbone"},
+    {topicName:"go"},
     {topicName:"ux"},
     {topicName:"other"}
 ]).then(result =>{

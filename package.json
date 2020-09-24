@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "mountdb":"node ./db/BuildDatabase.js",
+    "dev": "nodemon index.js",
+    "mountdb": "node ./db/BuildDatabase.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,9 +20,15 @@
   },
   "homepage": "https://github.com/humbertoraposa/questions-and-answers#readme",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "dayjs": "^1.8.36",
+    "dotenv": "^8.2.0",
     "polka": "^0.5.2",
+    "polka-ejs": "^1.0.0",
     "sequelize": "^6.3.5",
     "sqlite3": "^5.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
   }
 }

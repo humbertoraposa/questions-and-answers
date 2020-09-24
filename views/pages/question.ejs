@@ -1,0 +1,29 @@
+<%- include("../layoutHeader") %>
+
+<%# if (new) { %>
+    <h1 class="col-md">Create new question</h1>
+<%# } %>
+<form action="question" method="POST">
+    <div class="form-group col-md">
+        <label for="questionTitle">Title</label>
+        <input class="form-control" aria-label="questionTitle"/>
+        <label for="questionText">Question</label>
+        <textarea class="form-control" aria-label="questionText"></textarea>
+        <label for="questionAuthor">Author</label>
+        <select class="form-control" ariaLabel="questionAuthor">
+            <% authors.forEach(a => { %>
+                <option value="<%=a.id%>"><%=a.displayName%></option>
+            <% }) %>
+        </select>
+        <label for="questionTopic">Topic</label>
+        <select class="form-control" ariaLabel="questionTopic">
+            <% topics.forEach(t => { %>
+                <option value="<%=t.topicName%>"><%=t.topicName%></option>
+            <% }) %>
+        </select>
+    </div>
+    <div class="col-md">
+        <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+</form>
+<%- include("../layoutFooter") %>

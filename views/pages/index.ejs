@@ -1,0 +1,38 @@
+
+<%- include("../layoutHeader") %>
+<a class="btn btn-danger mr-3" href="/question">Ask Something</a>
+<% if (questions && questions.legth !== 0){ %>
+    <% questions.forEach((q) => { %>
+        <section class="row">
+            <article class="col-md">
+                <h1>Q.: <%= q.title %></h1>
+                <p class="author"><%= q.author.displayName %></p>
+                <p class="time"><%= q.PublishedAt %></p>
+                <p><%= q.text %></p>
+            </article>
+            <article class="col-md">
+                <% if(q.answer) { %>
+                    <h1></h1>
+                    <p class="author"><%= q.answer.author.displayName %></p>
+                    <p class="time"><%= q.answer.publishedAt %></p>
+                    <p><%= q.text %></p>
+                    <a class="new_answer" class="btn btn-info" href="/question/<%= q.id %>">Change Answer</a>
+                <% }else{ %>
+                    <h2>Has no answer yet</h2>
+                    <a class="btn btn-danger" href="/question/<%= q.id %>">Add Answer</a>
+                <% } %>
+            </article>
+        </section>
+        
+    <% }) %>
+<% }else{ %>
+    <section class="row">
+        <h2>No questions yet</h2>
+    </section>
+<% } %>
+<div class="row">
+    <div class="col-sm">
+        <a class="btn btn-danger" href="/question">Ask Something</a>
+    </div>
+</div>
+<%- include("../layoutFooter") %>

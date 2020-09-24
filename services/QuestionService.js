@@ -1,7 +1,16 @@
-const {Question,Answer} = require("../models/models")
+const {Question, Topic, Author} = require("../models/models")
 
-const findById = (id) =>{
-    return Question.findByPk(id)
+const validateQuestion = (obj) =>{
+    // TODO: Sanitize and validate
+    return {
+        title : obj.questionTitle || obj.title,
+        text : obj.questionText || obj.text,
+        authorId : obj.questionAuthor || obj.authorId
+    }
+}
+
+const findByPk = (id) =>{
+    return Question.findByPk(id) 
 }
 
 const findAll = () => {
@@ -9,6 +18,7 @@ const findAll = () => {
 }
 
 const save = async(question) => {
+    console.log(JSON.stringify(question))
     return Question.create(question)
 }
 
@@ -20,9 +30,18 @@ const update = (question, answer = null) => {
     q.save()
 }
 
+const listTopics = () => {
+    return Topic.findAll()
+}
+
+const listAuthors = () => Author.findAll()
+
 module.exports = {
-    findById,
+    findByPk,
     findAll,
     save,
-    update
+    update,
+    listAuthors,
+    listTopics,
+    validateQuestion
 }
